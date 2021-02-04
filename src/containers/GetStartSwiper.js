@@ -74,7 +74,7 @@ class GetStartSwiper extends React.Component {
                   style={styles.image}
                 />
                 <Container style={styles.viewInfo}>
-                  <Text h1 medium style={[styles.text, styles.title]}>
+                  <Text h2 medium style={[styles.text, styles.title]}>
                     {swiper.title}
                   </Text>
                   <Text colorSecondary style={styles.text}>

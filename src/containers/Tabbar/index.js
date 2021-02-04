@@ -30,11 +30,13 @@ const Tabbar = (props) => {
       isShow: true,
     },
     {
-      iconName: 'heart',
-      name: t('common:text_wishList'),
-      nameData: 'wishList',
-      router: homeTabs.wish_list,
-      isShow: configs.get('toggleWishlist'),
+      iconName: 'user',
+      name: t('common:text_me'),
+      router: homeTabs.me,
+      iconProps: {
+        size: 23,
+      },
+      isShow: true,
     },
     {
       iconName: 'shopping-bag',
@@ -44,13 +46,11 @@ const Tabbar = (props) => {
       isShow: configs.get('toggleCheckout'),
     },
     {
-      iconName: 'user',
-      name: t('common:text_me'),
-      router: homeTabs.me,
-      iconProps: {
-        size: 23,
-      },
-      isShow: true,
+      iconName: 'heart',
+      name: t('common:text_wishList'),
+      nameData: 'wishList',
+      router: homeTabs.wish_list,
+      isShow: configs.get('toggleWishlist'),
     },
   ];
 
