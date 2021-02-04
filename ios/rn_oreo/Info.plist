@@ -97,6 +97,22 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>Metropolis-Black.otf</string>
+		<string>Metropolis-BlackItalic.otf</string>
+		<string>Metropolis-Bold.otf</string>
+		<string>Metropolis-ExtraBold.otf</string>
+		<string>Metropolis-ExtraLight.otf</string>
+		<string>Metropolis-ExtraLightItalic.otf</string>
+		<string>Metropolis-Light.otf</string>
+		<string>Metropolis-LightItalic.otf</string>
+		<string>Metropolis-Medium (1).otf</string>
+		<string>Metropolis-Medium.otf</string>
+		<string>Metropolis-MediumItalic.otf</string>
+		<string>Metropolis-Regular.otf</string>
+		<string>Metropolis-RegularItalic.otf</string>
+		<string>Metropolis-SemiBold.otf</string>
+		<string>Metropolis-SemiBoldItalic.otf</string>
+		<string>Metropolis-Thin.otf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
