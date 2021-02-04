@@ -1,8 +1,8 @@
 // Font family
-const light = 'Poppins-Light';
-const regular = 'Poppins-Regular';
-const medium = 'Poppins-Medium';
-const bold = 'Poppins-SemiBold';
+const light = 'Metropolis-Light';
+const regular = 'Metropolis-Regular';
+const medium = 'Metropolis-Medium';
+const bold = 'Metropolis-SemiBold';
 
 // Export font size
 export const sizes = {
@@ -46,32 +46,32 @@ export default {
 
   android: {
     regular: {
-      fontFamily: 'sans-serif',
+      fontFamily: 'Metropolis',
     },
     light: {
-      fontFamily: 'sans-serif-light',
+      fontFamily: 'Metropolis-Light',
     },
     condensed: {
-      fontFamily: 'sans-serif-condensed',
+      fontFamily: 'Metropolis',
     },
     condensed_light: {
-      fontFamily: 'sans-serif-condensed',
+      fontFamily: 'Metropolis',
       fontWeight: 'light',
     },
     black: {
       // note(brentvatne): sans-serif-black is only supported on Android 5+,
       // we can detect that here and use it in that case at some point.
-      fontFamily: 'sans-serif',
+      fontFamily: 'Metropolis',
       fontWeight: 'bold',
     },
     thin: {
-      fontFamily: 'sans-serif-thin',
+      fontFamily: 'Metropolis-Thin',
     },
     medium: {
-      fontFamily: 'sans-serif-medium',
+      fontFamily: 'Metropolis-Medium',
     },
     bold: {
-      fontFamily: 'sans-serif',
+      fontFamily: 'Metropolis',
       fontWeight: 'bold',
     },
   },
