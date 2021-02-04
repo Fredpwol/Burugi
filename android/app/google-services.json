@@ -1,75 +1,133 @@
 {
   "project_info": {
-    "project_number": "297766130098",
-    "firebase_url": "https://oreo-240808.firebaseio.com",
-    "project_id": "oreo-240808",
-    "storage_bucket": "oreo-240808.appspot.com"
+    "project_number": "401747808924",
+    "firebase_url": "https://burugi-b41a2.firebaseio.com",
+    "project_id": "burugi-b41a2",
+    "storage_bucket": "burugi-b41a2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:297766130098:android:0a2ac1a0116072653fd4ab",
+        "mobilesdk_app_id": "1:401747808924:android:db2a300de50a4936cc1359",
         "android_client_info": {
-          "package_name": "com.rn_oreo"
+          "package_name": "com.brosofthispire.burugi"
         }
       },
       "oauth_client": [
         {
-          "client_id": "297766130098-lmi932plqjhaenoq7nlb23sb6uplhf6h.apps.googleusercontent.com",
+          "client_id": "401747808924-o6j8et2hh4br7ku9lm34694klqoqmde3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.rn_oreo",
-            "certificate_hash": "5fb4eaf25b23d60d462496b81624b8a769ddc465"
+            "package_name": "com.brosofthispire.burugi",
+            "certificate_hash": "5f592299d9212e4cf0fb24beed925f35314996db"
           }
         },
         {
-          "client_id": "297766130098-im4asefb6g2292ubg55c3nbf262iokou.apps.googleusercontent.com",
+          "client_id": "401747808924-pt3el9hd1shubav7ckoc0ndki1acmqsv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.rn_oreo",
-            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+            "package_name": "com.brosofthispire.burugi",
+            "certificate_hash": "9a23ff661f6a03a083f6a3662920d27205963c24"
           }
         },
         {
-          "client_id": "297766130098-ghj0rijuih92uifdfbniuo5tcvm8ig7c.apps.googleusercontent.com",
+          "client_id": "401747808924-voflhggb1pvbg5t2nr26i44s5f2l83s5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.rn_oreo",
-            "certificate_hash": "62853d17e4063563ca6585cffdf685cd7457c30e"
+            "package_name": "com.brosofthispire.burugi",
+            "certificate_hash": "06bc8a7d969258de70b73dcd0ab2ebc3d31f02ff"
           }
         },
         {
-          "client_id": "297766130098-ctk289dajbucbbrufc7nlaavlr7hnj4v.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.rn_oreo",
-            "certificate_hash": "489f709c41be04dba23567154cd1c28140617e44"
-          }
-        },
-        {
-          "client_id": "297766130098-m68tu9o0b0kgoi5aut7k3mepd1lotbn3.apps.googleusercontent.com",
+          "client_id": "401747808924-1opfoq5d87v6f4nn4ua10lc3m45g9aos.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDbDBW0eYDdxENtzyRCjujIEuRiHtWMunA"
+          "current_key": "AIzaSyCR9OWLlaDNBIrcgmBrtCSpMZCe5MubNL0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "297766130098-m68tu9o0b0kgoi5aut7k3mepd1lotbn3.apps.googleusercontent.com",
+              "client_id": "401747808924-1opfoq5d87v6f4nn4ua10lc3m45g9aos.apps.googleusercontent.com",
               "client_type": 3
-            },
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401747808924:android:09a744383ebe2bbecc1359",
+        "android_client_info": {
+          "package_name": "com.brosofthispire.groceries"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401747808924-pn2leimgmb3ks32rr9c3nq3f10ba06uu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brosofthispire.groceries",
+            "certificate_hash": "a5a7b062ccea58afaed8e0b82e7e049fb7fa6f95"
+          }
+        },
+        {
+          "client_id": "401747808924-1opfoq5d87v6f4nn4ua10lc3m45g9aos.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR9OWLlaDNBIrcgmBrtCSpMZCe5MubNL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
             {
-              "client_id": "297766130098-hjpcl4oa4njgv28a96hk130aqghlocr8.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "oreo.rnlab.io",
-                "app_store_id": "1475075333"
-              }
+              "client_id": "401747808924-1opfoq5d87v6f4nn4ua10lc3m45g9aos.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401747808924:android:eaae360496be86d4cc1359",
+        "android_client_info": {
+          "package_name": "io.rnlab.lekima"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401747808924-u1mcotig9m4pttrmbhgagcurfgsgcre8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.rnlab.lekima",
+            "certificate_hash": "6826c6cc1bdd4a4e027bd15c41ed32a96736d7da"
+          }
+        },
+        {
+          "client_id": "401747808924-1opfoq5d87v6f4nn4ua10lc3m45g9aos.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR9OWLlaDNBIrcgmBrtCSpMZCe5MubNL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401747808924-1opfoq5d87v6f4nn4ua10lc3m45g9aos.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         }
