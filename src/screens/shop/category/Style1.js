@@ -1,9 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {StyleSheet, FlatList} from 'react-native';
-import {Badge, ListItem} from 'src/components';
+import {StyleSheet, FlatList, Dimensions, Image, View} from 'react-native';
+import {Badge, ListItem, Text} from 'src/components';
 import Container from 'src/containers/Container';
 import Notification from './Notification';
+import OpacityView from 'src/containers/OpacityView';
 import EmptyCategory from './EmptyCategory';
 import {categorySelector} from 'src/modules/category/selectors';
 import {borderRadius, margin, padding} from 'src/components/config/spacing';
@@ -11,8 +12,11 @@ import {grey6} from 'src/components/config/colors';
 import unescape from 'lodash/unescape';
 import {excludeCategory} from 'src/utils/category';
 import {exclude_categories} from 'src/config/category';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const noImage = require('src/assets/images/imgCateDefault.png');
+
+const {width} = Dimensions.get('screen');
 
 const Style1 = ({category, goProducts}) => {
   const data = excludeCategory(category.data, exclude_categories);
@@ -23,41 +27,60 @@ const Style1 = ({category, goProducts}) => {
         <EmptyCategory />
       ) : (
         <Container style={styles.content}>
+          <Text bold h2>
+            {'Categories'}
+          </Text>
           <FlatList
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
+            numColumns={2}
             keyExtractor={(item) => `${item.id}`}
             data={data}
             renderItem={({item}) => (
-              <ListItem
-                title={unescape(item.name)}
-                titleProps={{
-                  h4: true,
-                }}
-                leftAvatar={{
-                  rounded: true,
-                  source:
+              <TouchableOpacity style={styles.item} onPress={() => goProducts(item)}>
+                <Image
+                  source={
                     item.image && item.image.src
-                      ? {
-                          uri: item.image.src,
-                          cache: 'reload',
-                        }
-                      : noImage,
-                  size: 60,
-                }}
-                rightIcon={
-                  <Badge
-                    status="grey2"
-                    value={item.count}
-                    badgeStyle={styles.badge}
-                    textStyle={styles.textBadge}
-                  />
-                }
-                chevron
-                onPress={() => goProducts(item)}
-                style={styles.item}
-                containerStyle={{paddingVertical: padding.base}}
-              />
+                      ? {uri: item.image.src, cache: 'reload'}
+                      : noImage
+                  }
+                  style={styles.img}
+                />
+                <OpacityView style={styles.viewText}>
+                  <Text style={styles.text} h4 medium>
+                    {item.name}
+                  </Text>
+                </OpacityView>
+              </TouchableOpacity>
+              // <ListItem
+              //   title={unescape(item.name)}
+              //   titleProps={{
+              //     h4: true,
+              //   }}
+              //   leftAvatar={{
+              //     rounded: true,
+              //     source:
+              //       item.image && item.image.src
+              //         ? {
+              //             uri: item.image.src,
+              //             cache: 'reload',
+              //           }
+              //         : noImage,
+              //     size: 60,
+              //   }}
+              //   rightIcon={
+              //     <Badge
+              //       status="grey2"
+              //       value={item.count}
+              //       badgeStyle={styles.badge}
+              //       textStyle={styles.textBadge}
+              //     />
+              //   }
+              //   chevron
+              //   onPress={() => goProducts(item)}
+              //   style={styles.item}
+              //   containerStyle={{paddingVertical: padding.base}}
+              // />
             )}
           />
         </Container>
@@ -75,7 +98,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   item: {
-    marginBottom: margin.base,
+    margin: 5,
+    borderRadius: borderRadius.base,
+    height: 200,
+    width: width / 2.1 - 5 * 3,
   },
   badge: {
     minWidth: 18,
@@ -85,6 +111,27 @@ const styles = StyleSheet.create({
   textBadge: {
     lineHeight: 18,
     color: grey6,
+  },
+  img: {
+    height: '100%',
+    width: '100%',
+    borderRadius: 20,
+  },
+  text: {
+    paddingHorizontal: padding.base,
+    paddingVertical: padding.base + 2,
+    textAlign: 'center',
+    color: 'white',
+  },
+  viewText: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'flex-end',
+    height: 60,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
   },
 });
 
