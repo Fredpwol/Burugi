@@ -2,13 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import isEqual from 'lodash/isEqual';
-import {StyleSheet, View, ActivityIndicator, I18nManager} from 'react-native';
-import {Header, ThemedView} from 'src/components';
+import {StyleSheet, View, ActivityIndicator, I18nManager, Image, Dimensions} from 'react-native';
+import {Header, ThemedView, Text} from 'src/components';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import ProductItem from 'src/containers/ProductItem';
 import {TextHeader, CartIcon} from 'src/containers/HeaderComponent';
 import Empty from 'src/containers/Empty';
 import ButtonSwiper from 'src/containers/ButtonSwiper';
+import Icon from "react-native-vector-icons/FontAwesome";
 
 import {removeWishList} from 'src/modules/common/actions';
 import {fetchWishList} from 'src/modules/product/actions';
@@ -22,6 +23,7 @@ import {wishListSelector, countWishListSelector} from 'src/modules/common/select
 import {margin} from 'src/components/config/spacing';
 import {homeTabs} from 'src/config/navigator';
 
+const {width, height} = Dimensions.get("window")
 class WishListScreen extends React.Component {
   componentDidMount() {
     this.fetchData();
@@ -47,13 +49,17 @@ class WishListScreen extends React.Component {
     const {t, navigation} = this.props;
     if (!data || data.length < 1) {
       return (
-        <Empty
-          icon="heart"
-          title={t('empty:text_title_wishlist')}
-          subTitle={t('empty:text_subtitle_wishlist')}
-          titleButton={t('common:text_go_shopping')}
-          clickButton={() => navigation.navigate(homeTabs.shop)}
-        />
+        <>
+          <Image source={require("src/assets/images/wishlist.png")} style={{width, height:height/2}} />
+          <View style={{alignItems:"center"}}>
+          <Text h2 bold>{"Your Wishlist Is Empty"}</Text>
+          <Text style={{textAlign: "center"}} >{"Simply sign in to pick up where you left off.\n Go Shopping"}</Text>
+          <Image source={require("src/assets/images/curve-arrow.png")} style={{height: 40, width:60, right:60, top:80, position:"absolute"}} />
+          {/* <View style={styles.fab}> */}
+          {/* </View> */}
+          </View>
+          <Icon name="plus-circle" style={styles.fab} onPress={() => navigation.navigate(homeTabs.shop)} />
+        </>
       );
     }
     return (
@@ -125,6 +131,12 @@ const styles = StyleSheet.create({
   firstItem: {
     borderTopWidth: 1,
   },
+  fab:{
+    fontSize:60,
+    right:10,
+    position:"absolute",
+    bottom: 10
+  }
 });
 
 const mapStateToProps = (state) => ({
