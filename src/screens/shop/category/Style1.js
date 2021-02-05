@@ -18,7 +18,7 @@ const Style1 = ({category, goProducts}) => {
   const data = excludeCategory(category.data, exclude_categories);
   return (
     <>
-      <Notification containerStyle={styles.notification} />
+      {/* <Notification containerStyle={styles.notification} /> */}
       {data.length < 1 ? (
         <EmptyCategory />
       ) : (
