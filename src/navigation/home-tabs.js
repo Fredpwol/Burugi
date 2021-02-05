@@ -18,9 +18,9 @@ export default function HomeTabs() {
     <Tab.Navigator tabBar={(props) => <Tabbar {...props} />}>
       <Tab.Screen name={homeTabs.home_drawer} component={HomeDrawer} />
       <Tab.Screen name={homeTabs.shop} component={Category} />
-      <Tab.Screen name={homeTabs.wish_list} component={Wishlist} />
-      <Tab.Screen name={homeTabs.cart} component={Cart} />
       <Tab.Screen name={homeTabs.me} component={Me} />
+      <Tab.Screen name={homeTabs.cart} component={Cart} />
+      <Tab.Screen name={homeTabs.wish_list} component={Wishlist} />
     </Tab.Navigator>
   );
 }
