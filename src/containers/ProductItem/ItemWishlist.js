@@ -4,10 +4,10 @@ import {connect} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import unescape from 'lodash/unescape';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Dimensions} from 'react-native';
 import {Image, Text, Button, ThemeConsumer} from 'src/components';
 import Price from '../Price';
-
+import Icon from "react-native-vector-icons/Ionicons";
 import {configsSelector} from 'src/modules/common/selectors';
 import {mainStack} from 'src/config/navigator';
 import {withAddToCart} from 'src/hoc/hoc-add-to-card';
@@ -18,11 +18,11 @@ import {sizes} from 'src/components/config/fonts';
 import {white, black} from 'src/components/config/colors';
 
 const stockStatusList = ['instock', 'onbackorder'];
-
+const { width } = Dimensions.get("window");
 const ItemWishlist = React.memo((props) => {
   const {t} = useTranslation();
   const navigation = useNavigation();
-  const {item, style, configs, loading, addCart} = props;
+  const {item, style, configs, loading, addCart, onDelete} = props;
   const {
     name,
     images,
@@ -43,11 +43,11 @@ const ItemWishlist = React.memo((props) => {
   return (
     <ThemeConsumer>
       {({theme}) => (
-        <View style={{backgroundColor: theme.ProductItem2.backgroundColor}}>
+        <View style={[{backgroundColor: theme.ProductItem2.backgroundColor}, styles.itemContainer]}>
+          <Icon name="ios-trash" style={styles.deleteIcon} onPress={() => onDelete(item.id)} />
           <TouchableOpacity
             style={[
-              styles.container,
-              styles.row,
+              styles.item,
               {borderColor: theme.colors.border},
               style && style,
             ]}
@@ -61,9 +61,8 @@ const ItemWishlist = React.memo((props) => {
               resizeMode="stretch"
               style={styles.image}
             />
-            <View style={[styles.right, styles.col]}>
-              <View style={[styles.info, styles.row]}>
-                <Text colorSecondary style={[styles.textName, styles.col]}>
+              <View style={[styles.info, styles.col]}>
+                <Text colorSecondary style={[styles.textName]}>
                   {unescape(name)}
                 </Text>
                 <Price price_format={price_format} type={type} />
@@ -82,7 +81,6 @@ const ItemWishlist = React.memo((props) => {
                   onPress={type === SIMPLE ? getAddToCart : goProductDetail}
                 />
               ) : null}
-            </View>
           </TouchableOpacity>
         </View>
       )}
@@ -97,13 +95,21 @@ const styles = StyleSheet.create({
   col: {
     flex: 1,
   },
+  item:{
+    width: (width / 2) - (margin.small * 3),
+    margin: margin.small,
+    borderWidth:1,
+    borderRadius:20
+  },
   container: {
     padding: padding.large,
     borderBottomWidth: 1,
   },
   image: {
-    width: 79,
-    height: 94,
+    width: (width / 2) - (margin.small * 3),
+    height: 120,
+    borderTopRightRadius:20,
+    borderTopLeftRadius:20
   },
   right: {
     paddingLeft: padding.large,
@@ -111,19 +117,30 @@ const styles = StyleSheet.create({
   },
   info: {
     marginBottom: margin.small,
+    alignItems:"center"
   },
   textName: {
-    marginRight: margin.large,
+    fontSize:8
   },
   button: {
     paddingHorizontal: padding.big,
     backgroundColor: black,
     borderColor: black,
+    borderBottomLeftRadius:20,
+    borderBottomRightRadius:20
   },
   titleButton: {
     color: white,
     fontSize: sizes.h6,
   },
+  deleteIcon:{
+    fontSize:24,
+    position:"absolute",
+    right:20,
+    zIndex:10,
+    top: 10,
+    color:"red"
+  }
 });
 const mapStateToProps = (state) => {
   return {
