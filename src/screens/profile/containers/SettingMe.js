@@ -31,6 +31,7 @@ const SettingMe = ({
         type="underline"
         titleProps={titleProps}
         pad={padding.large}
+        titleStyle={{color:"black"}}
         chevron
         onPress={() => clickPage(mainStack.setting)}
       />
@@ -40,6 +41,7 @@ const SettingMe = ({
         type="underline"
         titleProps={titleProps}
         chevron
+        titleStyle={{color:"black"}}
         pad={padding.large}
         onPress={() => clickPage(mainStack.help)}
       />
@@ -54,6 +56,7 @@ const SettingMe = ({
         type="underline"
         titleProps={titleProps}
         pad={padding.large}
+        titleStyle={{color:"black"}}
         containerStyle={!isLogin && styles.itemEnd}
         onPress={() => goPhone(`tel:${phonenumber}`)}
       />
@@ -64,6 +67,7 @@ const SettingMe = ({
           type="underline"
           titleProps={titleProps}
           pad={padding.large}
+          titleStyle={{color:"black"}}e
           containerStyle={styles.itemEnd}
           onPress={handleSignOut}
         />

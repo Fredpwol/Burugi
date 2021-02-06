@@ -119,7 +119,7 @@ class BlogList extends React.Component {
       <ThemedView isFullView>
         <Header
           leftComponent={<IconHeader />}
-          centerComponent={<TextHeader title={t('common:text_blogs')} />}
+          centerComponent={<TextHeader title={"Stories"} />}
           rightComponent={<CartIcon />}
         />
         {!this.state.loading ? (

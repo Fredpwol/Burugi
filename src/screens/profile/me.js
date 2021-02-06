@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {StyleSheet, ScrollView, View, Linking} from 'react-native';
-import {Header, ThemedView, Text} from 'src/components';
+import {Header, ThemedView, Text, ListItem} from 'src/components';
 
 import HeaderMe from './containers/HeaderMe';
 import SettingMe from './containers/SettingMe';
@@ -42,18 +42,44 @@ class MeScreen extends Component {
     const {
       t,
       configs,
-      auth: {isLogin},
+      auth: {isLogin, user},
       language,
     } = this.props;
 
+    // let nameUser = t('profile:text_hello_default');
+    // if (isLogin && user && !isEqual(user, {})) {
+    //   const stringName = t('profile:text_hello', {name: user.display_name});
+    // }
     return (
       <ThemedView isFullView>
-        <Header
-          centerComponent={<TextHeader title={t('common:text_me_screen')} />}
-          rightComponent={<CartIcon />}
-        />
-        <ScrollView>
-          <Container style={styles.viewContent}>
+        <View style={styles.body}>
+          {isLogin ?
+          (<ListItem
+            title={user.display_name}
+            subtitle={user.user_email}
+            leftAvatar={{
+              source: user.avatar
+                ? {uri: user.avatar}
+                : require('src/assets/images/pDefault.png'),
+              size: 60,
+              rounded: true,
+              onPress: () => navigation.navigate(mainStack.account),
+            }}
+            titleProps={{
+              medium: true,
+              onPress: () => navigation.navigate(mainStack.account),
+            }}
+            // rightElement={
+            //   <TouchableOpacity style={styles.loginBell} onPress={() => false && navigation.navigate(profileStack.notification_list)}>
+            //     <Icon name="bell" size={20} />
+            //     {/*<Badge status="error" value={2} badgeStyle={styles.badge} textStyle={styles.textBadge} />*/}
+            //   </TouchableOpacity>
+            // }
+            containerStyle={{backgroundColor:"transparent", marginBottom:50}}
+            titleStyle={{color:"white"}}
+          />) : null}
+        <ScrollView style={styles.settingBody}>
+          <Container style={[styles.viewContent]}>
             <HeaderMe />
             <InformationMe isLogin={isLogin} clickPage={this.goPageOther} />
             <SettingMe
@@ -106,6 +132,7 @@ class MeScreen extends Component {
             </Text>
           </Container>
         </ScrollView>
+        </View>
       </ThemedView>
     );
   }
@@ -129,6 +156,14 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     paddingBottom: 0,
   },
+  body:{
+    backgroundColor:"black",
+    paddingTop:50
+  },
+  settingBody:{
+    backgroundColor: "white",
+    borderRadius: 30,
+  }
 });
 
 const mapStateToProps = (state) => {

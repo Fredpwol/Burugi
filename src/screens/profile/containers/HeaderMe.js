@@ -7,7 +7,7 @@ import truncate from 'lodash/truncate';
 import isEqual from 'lodash/isEqual';
 
 import {StyleSheet} from 'react-native';
-import {Text, ListItem} from 'src/components';
+import {Text, ListItem, ThemeConsumer} from 'src/components';
 import Button from 'src/containers/Button';
 import Separator from 'src/containers/Separator';
 import {Row} from 'src/containers/Gird';
@@ -61,28 +61,32 @@ const HeaderMe = (props) => {
     );
   }
   return (
-    <ListItem
-      title={nameUser}
-      leftAvatar={{
-        source: user.avatar
-          ? {uri: user.avatar}
-          : require('src/assets/images/pDefault.png'),
-        size: 60,
-        rounded: true,
-        onPress: () => navigation.navigate(mainStack.account),
-      }}
-      titleProps={{
-        medium: true,
-        onPress: () => navigation.navigate(mainStack.account),
-      }}
-      // rightElement={
-      //   <TouchableOpacity style={styles.loginBell} onPress={() => false && navigation.navigate(profileStack.notification_list)}>
-      //     <Icon name="bell" size={20} />
-      //     {/*<Badge status="error" value={2} badgeStyle={styles.badge} textStyle={styles.textBadge} />*/}
-      //   </TouchableOpacity>
-      // }
-      containerStyle={styles.item}
-    />
+    <ThemeConsumer>
+      {({theme}) => (
+        <ListItem
+        title={nameUser}
+        leftAvatar={{
+          source: user.avatar
+            ? {uri: user.avatar}
+            : require('src/assets/images/pDefault.png'),
+          size: 60,
+          rounded: true,
+          onPress: () => navigation.navigate(mainStack.account),
+        }}
+        titleProps={{
+          medium: true,
+          onPress: () => navigation.navigate(mainStack.account),
+        }}
+        // rightElement={
+        //   <TouchableOpacity style={styles.loginBell} onPress={() => false && navigation.navigate(profileStack.notification_list)}>
+        //     <Icon name="bell" size={20} />
+        //     {/*<Badge status="error" value={2} badgeStyle={styles.badge} textStyle={styles.textBadge} />*/}
+        //   </TouchableOpacity>
+        // }
+        containerStyle={[styles.item, {backgroundColor: theme.colors.bgColor, borderColor: "#d5d5d5", borderWidth:1, elevation:5, borderRadius:30}]}
+      />
+      )}
+    </ThemeConsumer>
   );
 };
 

@@ -2,12 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, ScrollView, View} from 'react-native';
 import {ThemedView, Text, ListItem} from 'src/components';
 import ItemCategoryMenu from './ItemCategoryMenu';
 
 import {categorySelector} from 'src/modules/category/selectors';
 import {configsSelector, languageSelector} from 'src/modules/common/selectors';
+import {authSelector} from 'src/modules/auth/selectors';
 import {padding, margin} from 'src/components/config/spacing';
 
 import {homeTabs, mainStack} from 'src/config/navigator';
@@ -15,6 +16,11 @@ import {excludeCategory} from '../utils/category';
 import {exclude_categories_sidebar} from '../config/category';
 
 class Sidebar extends React.Component {
+  constructor(props){
+    super(props)
+    const {auth: {user, isLogin}} = this.props;
+    this.state = { user, isLogin};
+  }
   handlePage = (router, params = {}) => {
     const {navigation} = this.props;
     if (!navigation) {
@@ -36,7 +42,7 @@ class Sidebar extends React.Component {
       },
       {
         id: '2',
-        name: t('common:text_blogs'),
+        name: "Stories",
         router: mainStack.blogs,
       },
       {
@@ -77,10 +83,28 @@ class Sidebar extends React.Component {
 
     // Filter include category
     const _data = excludeCategory(data, exclude_categories_sidebar);
+    const {user, isLogin} = this.state;
 
     return (
       <ThemedView isFullView>
         <ScrollView>
+        {isLogin ?
+          (<View style={{backgroundColor:"black"}}>
+             <ListItem
+            title={user.display_name}
+            subtitle={user.user_email}
+            leftAvatar={{
+              source: user.avatar
+                ? {uri: user.avatar}
+                : require('src/assets/images/pDefault.png'),
+              size: 60,
+              rounded: true,
+              onPress: () => navigation.navigate(mainStack.account),
+            }}
+            containerStyle={{backgroundColor:"transparent", paddingVertical:25}}
+            titleStyle={{color:"white"}}
+          />
+          </View>) : null}
           <Text h3 medium style={[styles.title, styles.titleHead]}>
             {t('common:text_category')}
           </Text>
@@ -120,9 +144,10 @@ class Sidebar extends React.Component {
 
 const styles = StyleSheet.create({
   title: {
-    marginTop: margin.big + 4,
     marginBottom: margin.small + 1,
     paddingHorizontal: padding.large,
+    paddingVertical: padding.small,
+    backgroundColor:"#E4EEF1"
   },
   titleHead: {
     paddingTop: getStatusBarHeight(),
@@ -133,6 +158,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
+  auth: authSelector(state),
   category: categorySelector(state),
   configs: configsSelector(state),
   language: languageSelector(state),
