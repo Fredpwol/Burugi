@@ -2,7 +2,13 @@ import * as React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {useTranslation, withTranslation} from 'react-i18next';
-import {StyleSheet, View, TouchableOpacity, Image, ActivityIndicator} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
 import {Text, ThemeConsumer, withTheme} from 'src/components';
 import Input from 'src/containers/input/InputBasic';
 import {MIN_HEIGHT} from 'src/containers/ViewLabel';
@@ -36,11 +42,6 @@ function InputCoupon(props) {
           ]}>
           <View
             style={[styles.viewInput, {backgroundColor: theme.colors.bgColor}]}>
-            <Image
-              source={images?.coupon}
-              resizeMode="stretch"
-              style={styles.image}
-            />
             <Input
               value={value}
               onChangeText={(text) => setValue(text)}
@@ -58,7 +59,15 @@ function InputCoupon(props) {
             onPress={clickApply}
             activeOpacity={couponTrue ? 0.8 : 1}>
             {!addCouponLoading ? (
-              <Text colorSecondary={!couponTrue} medium={couponTrue}>
+              <Text
+                medium={couponTrue}
+                style={{
+                  backgroundColor: 'black',
+                  color: 'white',
+                  paddingHorizontal: 25,
+                  paddingVertical: 15,
+                  borderRadius: 5,
+                }}>
                 {t('common:text_apply')}
               </Text>
             ) : (
@@ -68,17 +77,18 @@ function InputCoupon(props) {
         </View>
       )}
     </ThemeConsumer>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: MIN_HEIGHT,
+    // height: MIN_HEIGHT,
     borderWidth: 1,
     borderRadius: borderRadius.base,
     overflow: 'hidden',
     flexDirection: 'row',
     alignItems: 'center',
+    elevation:4
   },
   viewInput: {
     flex: 1,

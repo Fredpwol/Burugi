@@ -17,7 +17,7 @@ const Quantity = (props: Props): React.Node => {
     setCount(parseInt(value));
   }, [value]);
   return (
-    <ThemedView style={[styles.container, style && style]} colorSecondary>
+    <ThemedView style={[styles.container, style && style]} >
       <Text style={styles.text}>{count}</Text>
       <TouchableOpacity
         style={[styles.touch, styles.left]}
@@ -51,8 +51,9 @@ Quantity.defaultProps = {
 const styles = StyleSheet.create({
   container: {
     minWidth: 86,
-    borderRadius: borderRadius.base,
+    borderRadius: borderRadius.base+5,
     overflow: 'hidden',
+    borderWidth:1
   },
   touch: {
     width: margin.big,

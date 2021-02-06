@@ -7,13 +7,13 @@ import {Text, Image, ThemeConsumer} from 'src/components';
 import {Row, Col} from 'src/containers/Gird';
 import Quantity from 'src/containers/Quantity';
 
-import {grey4} from 'src/components/config/colors';
+import {grey4, grey} from 'src/components/config/colors';
 import {lineHeights, sizes} from 'src/components/config/fonts';
 import {margin, padding} from 'src/components/config/spacing';
 
 import currencyFormatter from 'src/utils/currency-formatter';
 
-const getUrlImage = thumb => {
+const getUrlImage = (thumb) => {
   if (!thumb || typeof thumb !== 'string') {
     return null;
   }
@@ -50,38 +50,40 @@ function CartItem(props) {
             },
             style && style,
           ]}>
-          <Image
-            source={
-              image ? {uri: image} : require('src/assets/images/pDefault.png')
-            }
-            style={styles.image}
-          />
-          <Col style={styles.content}>
-            <View>
-              <Text
-                medium
-                onPress={() => goToProduct(product_id)}
-                style={styles.title}>
-                {unescape(name)}
-              </Text>
-              {variation && Object.keys(variation).length > 0 ? (
-                <Row style={styles.viewAttribute}>
-                  {Object.keys(variation).map((value) => (
-                    <Text key={value} colorThird h6>
-                      {value}: {variation[value]}
-                    </Text>
-                  ))}
-                </Row>
-              ) : null}
-            </View>
-            <Quantity
-              value={quantity}
-              onChange={(value) => updateQuantity(key, value)}
+          <View style={styles.itemContainer}>
+            <Image
+              source={
+                image ? {uri: image} : require('src/assets/images/pDefault.png')
+              }
+              style={styles.image}
             />
-          </Col>
-          <Text medium>
-            {currencyFormatter(line_subtotal / quantity, currency)}
-          </Text>
+            <View style={styles.content}>
+              <View>
+                <Text
+                  medium
+                  onPress={() => goToProduct(product_id)}
+                  style={styles.title}>
+                  {unescape(name)}
+                </Text>
+                <Text medium>
+                  {currencyFormatter(line_subtotal / quantity, currency)}
+                </Text>
+                {variation && Object.keys(variation).length > 0 ? (
+                  <Row style={styles.viewAttribute}>
+                    {Object.keys(variation).map((value) => (
+                      <Text key={value} colorThird h6>
+                        {value}: {variation[value]}
+                      </Text>
+                    ))}
+                  </Row>
+                ) : null}
+              </View>
+              <Quantity
+                value={quantity}
+                onChange={(value) => updateQuantity(key, value)}
+              />
+            </View>
+          </View>
         </Row>
       )}
     </ThemeConsumer>
@@ -119,6 +121,16 @@ const styles = StyleSheet.create({
     lineHeight: lineHeights.h6 - 2,
     color: grey4,
     marginRight: margin.small,
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    marginRight: margin.small,
+    borderWidth: 1,
+    // paddingRight: padding.small,
+    paddingVertical: padding.small,
+    borderColor:grey4,
+    borderRadius: 10,
+    width:"100%"
   },
 });
 

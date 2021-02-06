@@ -52,35 +52,6 @@ const Style1 = ({category, goProducts}) => {
                   </Text>
                 </OpacityView>
               </TouchableOpacity>
-              // <ListItem
-              //   title={unescape(item.name)}
-              //   titleProps={{
-              //     h4: true,
-              //   }}
-              //   leftAvatar={{
-              //     rounded: true,
-              //     source:
-              //       item.image && item.image.src
-              //         ? {
-              //             uri: item.image.src,
-              //             cache: 'reload',
-              //           }
-              //         : noImage,
-              //     size: 60,
-              //   }}
-              //   rightIcon={
-              //     <Badge
-              //       status="grey2"
-              //       value={item.count}
-              //       badgeStyle={styles.badge}
-              //       textStyle={styles.textBadge}
-              //     />
-              //   }
-              //   chevron
-              //   onPress={() => goProducts(item)}
-              //   style={styles.item}
-              //   containerStyle={{paddingVertical: padding.base}}
-              // />
             )}
           />
         </Container>
