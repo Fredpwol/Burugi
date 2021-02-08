@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {StyleSheet, ScrollView, View, Linking} from 'react-native';
-import {Header, ThemedView, Text, ListItem} from 'src/components';
+import {Header, ThemedView, Text, ListItem, ThemeConsumer} from 'src/components';
 
 import HeaderMe from './containers/HeaderMe';
 import SettingMe from './containers/SettingMe';
@@ -51,89 +51,96 @@ class MeScreen extends Component {
     //   const stringName = t('profile:text_hello', {name: user.display_name});
     // }
     return (
-      <ThemedView isFullView>
-        <View style={styles.body}>
-          {isLogin ?
-          (<ListItem
-            title={user.display_name}
-            subtitle={user.user_email}
-            leftAvatar={{
-              source: user.avatar
-                ? {uri: user.avatar}
-                : require('src/assets/images/pDefault.png'),
-              size: 60,
-              rounded: true,
-              onPress: () => navigation.navigate(mainStack.account),
-            }}
-            titleProps={{
-              medium: true,
-              onPress: () => navigation.navigate(mainStack.account),
-            }}
-            // rightElement={
-            //   <TouchableOpacity style={styles.loginBell} onPress={() => false && navigation.navigate(profileStack.notification_list)}>
-            //     <Icon name="bell" size={20} />
-            //     {/*<Badge status="error" value={2} badgeStyle={styles.badge} textStyle={styles.textBadge} />*/}
-            //   </TouchableOpacity>
-            // }
-            containerStyle={{backgroundColor:"transparent", marginBottom:50}}
-            titleStyle={{color:"white"}}
-          />) : null}
-        <ScrollView style={styles.settingBody}>
-          <Container style={[styles.viewContent]}>
-            <HeaderMe />
-            <InformationMe isLogin={isLogin} clickPage={this.goPageOther} />
-            <SettingMe
-              isLogin={isLogin}
-              clickPage={this.goPageOther}
-              goPhone={this.handleLinkUrl}
-              phonenumber={configs.get('phone')}
-            />
-            <View style={styles.viewSocial}>
-              <SocialIcon
-                light
-                raised={false}
-                type="facebook"
-                style={styles.socialIconStyle}
-                iconSize={15}
-                onPress={() => this.handleLinkUrl(configs.get('facebook'))}
+      <ThemeConsumer>
+        {({theme}) => (
+          <ThemedView isFullView>
+          <View style={isLogin && styles.body}>
+            {isLogin ?
+            (<ListItem
+              title={user.display_name}
+              subtitle={user.user_email}
+              leftAvatar={{
+                source: user.avatar
+                  ? {uri: user.avatar}
+                  : require('src/assets/images/pDefault.png'),
+                size: 60,
+                rounded: true,
+                onPress: () => navigation.navigate(mainStack.account),
+              }}
+              titleProps={{
+                medium: true,
+                onPress: () => navigation.navigate(mainStack.account),
+              }}
+              // rightElement={
+              //   <TouchableOpacity style={styles.loginBell} onPress={() => false && navigation.navigate(profileStack.notification_list)}>
+              //     <Icon name="bell" size={20} />
+              //     {/*<Badge status="error" value={2} badgeStyle={styles.badge} textStyle={styles.textBadge} />*/}
+              //   </TouchableOpacity>
+              // }
+              containerStyle={{backgroundColor:"transparent", marginBottom:50}}
+              titleStyle={{color:"white"}}
+            />) : (        <Header
+              centerComponent={<TextHeader title={t('common:text_me_screen')} />}
+              rightComponent={<CartIcon />}
+            />)}
+          <ScrollView style={[isLogin && styles.settingBody, {backgroundColor: theme.colors.bgColor}]}>
+            <Container style={[styles.viewContent]}>
+              <HeaderMe />
+              <InformationMe isLogin={isLogin} clickPage={this.goPageOther} />
+              <SettingMe
+                isLogin={isLogin}
+                clickPage={this.goPageOther}
+                goPhone={this.handleLinkUrl}
+                phonenumber={configs.get('phone')}
               />
-
-              <SocialIcon
-                light
-                raised={false}
-                type="instagram"
-                style={styles.socialIconStyle}
-                iconSize={15}
-                onPress={() => this.handleLinkUrl(configs.get('instagram'))}
-              />
-
-              <SocialIcon
-                light
-                raised={false}
-                type="pinterest"
-                style={styles.socialIconStyle}
-                iconSize={15}
-                onPress={() => this.handleLinkUrl(configs.get('pinterest'))}
-              />
-
-              <SocialIcon
-                light
-                raised={false}
-                type="twitter"
-                style={styles.socialIconStyle}
-                iconSize={15}
-                onPress={() => this.handleLinkUrl(configs.get('twitter'))}
-              />
-            </View>
-            <Text h6 colorThird>
-              {typeof configs.get('copyright') === 'string'
-                ? configs.get('copyright')
-                : configs.getIn(['copyright', language])}
-            </Text>
-          </Container>
-        </ScrollView>
-        </View>
-      </ThemedView>
+              <View style={styles.viewSocial}>
+                <SocialIcon
+                  light
+                  raised={false}
+                  type="facebook"
+                  style={styles.socialIconStyle}
+                  iconSize={15}
+                  onPress={() => this.handleLinkUrl(configs.get('facebook'))}
+                />
+  
+                <SocialIcon
+                  light
+                  raised={false}
+                  type="instagram"
+                  style={styles.socialIconStyle}
+                  iconSize={15}
+                  onPress={() => this.handleLinkUrl(configs.get('instagram'))}
+                />
+  
+                <SocialIcon
+                  light
+                  raised={false}
+                  type="pinterest"
+                  style={styles.socialIconStyle}
+                  iconSize={15}
+                  onPress={() => this.handleLinkUrl(configs.get('pinterest'))}
+                />
+  
+                <SocialIcon
+                  light
+                  raised={false}
+                  type="twitter"
+                  style={styles.socialIconStyle}
+                  iconSize={15}
+                  onPress={() => this.handleLinkUrl(configs.get('twitter'))}
+                />
+              </View>
+              <Text h6 colorThird>
+                {typeof configs.get('copyright') === 'string'
+                  ? configs.get('copyright')
+                  : configs.getIn(['copyright', language])}
+              </Text>
+            </Container>
+          </ScrollView>
+          </View>
+        </ThemedView>
+        )}
+      </ThemeConsumer>
     );
   }
 }
@@ -161,8 +168,10 @@ const styles = StyleSheet.create({
     paddingTop:50
   },
   settingBody:{
-    backgroundColor: "white",
+    // backgroundColor: "white",
     borderRadius: 30,
+    borderColor:"#e5e5e5",
+    borderWidth:0.5
   }
 });
 
