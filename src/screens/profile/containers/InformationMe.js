@@ -24,7 +24,7 @@ const InformationMe = ({isLogin, clickPage}) => {
         title={t('common:text_account')}
         type="underline"
         titleProps={titleProps}
-        titleStyle={{color:"black"}}
+       
         chevron
         pad={padding.large}
         onPress={() => clickPage(mainStack.account)}
@@ -35,7 +35,7 @@ const InformationMe = ({isLogin, clickPage}) => {
         type="underline"
         titleProps={titleProps}
         chevron
-        titleStyle={{color:"black"}}
+       
         pad={padding.large}
         onPress={() => clickPage(mainStack.order_list)}
       />
@@ -45,7 +45,7 @@ const InformationMe = ({isLogin, clickPage}) => {
         type="underline"
         titleProps={titleProps}
         chevron
-        titleStyle={{color:"black"}}
+       
         pad={padding.large}
         containerStyle={styles.itemEnd}
         onPress={() => clickPage(mainStack.downloads)}
