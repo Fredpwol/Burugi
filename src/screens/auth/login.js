@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import {StyleSheet, ScrollView, View, KeyboardAvoidingView} from 'react-native';
+import {StyleSheet, ScrollView, View, KeyboardAvoidingView, Dimensions} from 'react-native';
 import {
   Header,
   Divider,
@@ -25,6 +25,7 @@ import {margin} from 'src/components/config/spacing';
 
 import {changeColor} from 'src/utils/text-html';
 
+const { width, height } = Dimensions.get("window")
 class LoginScreen extends React.Component {
   static navigationOptions = {
     headerShown: false,
@@ -57,7 +58,8 @@ class LoginScreen extends React.Component {
       <ThemeConsumer>
         {({theme}) => (
           <ThemedView isFullView>
-            <Header
+                 <View style={styles.backgroundBody}>
+            {/* <Header
               leftComponent={
                 !requiredLogin && (
                   <IconHeader
@@ -68,9 +70,17 @@ class LoginScreen extends React.Component {
                 )
               }
               centerComponent={<TextHeader title={t('common:text_signin')} />}
-            />
-            <KeyboardAvoidingView behavior="height" style={styles.keyboard}>
-              <ScrollView>
+            /> */}
+            <View style={{height: height/3.5, paddingTop:50, paddingLeft:10}}>
+            <Text h3 style={{color:"white",}}  onPress={() => navigation.navigate(rootSwitch.main)}>
+              X
+            </Text>
+          <Text h1 bold style={{color:"white", paddingTop:30}}>
+            {"Sign In"}
+            </Text>
+            </View>
+            <KeyboardAvoidingView behavior="height">
+            <ScrollView style={{backgroundColor:"white", paddingTop:35, borderTopLeftRadius: 30, borderTopRightRadius:30}}>
                 <Container>
                   {message ? (
                     <TextHtml
@@ -84,6 +94,7 @@ class LoginScreen extends React.Component {
                     onChangeText={(value) => this.setState({username: value})}
                     error={errors && errors.username}
                     keyboardType="email-address"
+                    style={{color:"black"}}
                   />
                   <Input
                     label={t('auth:text_input_password')}
@@ -91,6 +102,7 @@ class LoginScreen extends React.Component {
                     secureTextEntry
                     onChangeText={(value) => this.setState({password: value})}
                     error={errors && errors.password}
+                    style={{color:"black"}}
                   />
                   <Button
                     title={t('common:text_signin')}
@@ -113,18 +125,22 @@ class LoginScreen extends React.Component {
                   </View>
                   <SocialMethods style={styles.viewSocial} />
                 </Container>
-              </ScrollView>
-            </KeyboardAvoidingView>
-            <Container style={styles.margin}>
+                <Container style={styles.margin}>
               <Text h6 colorThird style={styles.textAccount}>
-                {t('auth:text_have_account')}
+                {t('auth:text_have_account') + " "}
+                <Text onPress={() => navigation.navigate(authStack.register)}>
+                {"Sign Up"}
               </Text>
-              <Button
+              </Text>
+              {/* <Button
                 title={t('auth:text_register')}
                 type="outline"
                 onPress={() => navigation.navigate(authStack.register)}
-              />
+              /> */}
             </Container>
+              </ScrollView>
+            </KeyboardAvoidingView>
+            </View>
           </ThemedView>
         )}
       </ThemeConsumer>
@@ -159,6 +175,9 @@ const styles = StyleSheet.create({
   viewSocial: {
     marginBottom: margin.big,
   },
+  backgroundBody:{
+  backgroundColor:"black"
+  }
 });
 
 const mapStateToProps = (state) => {
