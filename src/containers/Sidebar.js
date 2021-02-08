@@ -29,8 +29,9 @@ class Sidebar extends React.Component {
     navigation.navigate(router, params);
   };
 
+
   render() {
-    const {t, category, configs, language, navigation} = this.props;
+    const {t, category, configs, language, navigation, auth:{ user, isLogin}} = this.props;
     const dataHelpInfo = [
       {
         id: '1',
@@ -83,7 +84,7 @@ class Sidebar extends React.Component {
 
     // Filter include category
     const _data = excludeCategory(data, exclude_categories_sidebar);
-    const {user, isLogin} = this.state;
+    // const {user, isLogin} = this.state;
 
     return (
       <ThemedView isFullView>
